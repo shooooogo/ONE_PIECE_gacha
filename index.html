@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+	<!-- ボタンCSSの参照先 http://www.htmq.com/csskihon/004.shtml -->
+	<style type="text/css">
+		.square_btn{
+			display: inline-block;
+			padding: 0.5em 1em;
+			text-decoration: none;
+			background: #668ad8;/*ボタン色*/
+			color: #FFF;
+			border-bottom: solid 4px #627295;
+			border-radius: 3px;
+		}
+		.square_btn:active {/*ボタンを押したとき*/
+			-ms-transform: translateY(4px);
+			-webkit-transform: translateY(4px);
+			transform: translateY(4px);/*下に動く*/
+			border-bottom: none;/*線を消す*/
+		}
+	</style>
+	<title>ご飯ガチャ</title>
+</head>
+<body>
+<h1>ご飯ガチャ</h1>
+
+<script>
+var no_common = 0;
+var no_rare = 0;
+var no_srare = 0;
+var no_urare = 0;
+function gatcha() {
+	var img = document.getElementById("card"); 
+	var number = Math.floor(100*Math.random());
+	if( number < 21 ) {
+		img.src = "One-Piece/USOPPU.jpg";
+		no_common++;
+	} else if( number < 42 ) {
+		img.src = "One-Piece/HENTAI.jpg";
+		no_common++;
+	} else if( number < 63 ) {
+		img.src = "One-Piece/Alone.jpg";
+		no_common++;
+	} else if( number < 76 ) {
+		img.src = "One-Piece/PyuaPyua.jpg";
+		no_rare++;
+	} else if( number < 89 ) {
+		img.src = "One-Piece/KANDEN.jpg";
+		no_rare++;
+	} else if( number < 94 ) {
+		img.src = "One-Piece/DANMEN_KURO.jpg";
+		no_srare++;
+	} else if( number < 99 ) {
+		img.src = "One-Piece/35t.jpg";
+		no_srare++;
+	} else {
+		alert("おめでとう！");
+		img.src = "image/From_TAII.jpg";
+		no_urare++;
+	}
+	var total = no_common + no_rare + no_srare + no_urare;
+	document.getElementById("price").innerHTML = total*300+"円";
+	document.getElementById("no_common").innerHTML = no_common+"枚（確率"+Math.round(no_common/total*100*100)/100+"％）";
+	document.getElementById("no_rare").innerHTML = no_rare+"枚（確率"+Math.round(no_rare/total*100*100)/100+"％）";
+	document.getElementById("no_srare").innerHTML = no_srare+"枚（確率"+Math.round(no_srare/total*100*100)/100+"％）";
+	document.getElementById("no_urare").innerHTML = no_urare+"枚（確率"+Math.round(no_urare/total*100*100)/100+"％）";
+}
+</script>
+
+<div><img id="card" src="image/unknown.jpg" width="600" height="400"></div>
+
+<div><a href="#" class="square_btn" onclick="gatcha()">ガチャを引く！</a></div>
+
+<dl>
+	<dt>現在の課金額</dt>
+	<dd id="price">0円</dd>
+	<dt>コモンの枚数（設定確率は63％）</dt>
+	<dd id="no_common">0枚</dd>
+	<dt>レアの枚数（設定確率は26％）</dt>
+	<dd id="no_rare">0枚</dd>
+	<dt>ＳＲの枚数（設定確率は10％）</dt>
+	<dd id="no_srare">0枚</dd>
+	<dt>ＵＲの枚数（設定確率は1％）</dt>
+	<dd id="no_urare">0枚</dd>
+</dl>
+
+</body>
+</html>
